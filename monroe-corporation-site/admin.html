@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Administration | Monroe Corporation</title>
+  <meta name="description" content="Administrative account system for Monroe Corporation. Verifies Emerald Games accounts with the admin role." />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html"><img src="assets/logo.svg" alt="Monroe Corporation logo" /><span>Monroe Corporation</span></a>
+    <button class="nav-toggle" aria-label="Open navigation" aria-expanded="false">Menu</button>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="about.html">About</a>
+      <a href="divisions.html">Divisions</a>
+      <a href="governance.html">Governance</a>
+      <a href="contact.html">Contact</a>
+      <a href="admin.html" aria-current="page">Administration</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero admin-hero">
+      <p class="eyebrow">Administrative Account System</p>
+      <h1>Restricted Monroe Corporation access.</h1>
+      <p>This area verifies an Emerald Games account through Firestore and only allows access when that account has <strong>role: admin</strong>.</p>
+    </section>
+
+    <section class="section admin-layout">
+      <div class="admin-card" id="admin-login-panel">
+        <p class="division-label">Emerald Games Verification</p>
+        <h2>Admin Sign In</h2>
+        <p class="admin-muted">Use an Emerald Games account that exists in the Firestore <code>users</code> collection and has the role value set to <code>admin</code>.</p>
+
+        <form class="admin-form" id="admin-login-form">
+          <label for="admin-username">Username</label>
+          <input id="admin-username" name="username" autocomplete="username" required />
+
+          <label for="admin-password">Password</label>
+          <input id="admin-password" name="password" type="password" autocomplete="current-password" required />
+
+          <button class="button primary" type="submit">Verify Administrative Account</button>
+          <p class="form-status" id="admin-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+
+      <div class="admin-card admin-dashboard" id="admin-dashboard" hidden>
+        <div class="admin-dashboard-header">
+          <div>
+            <p class="division-label">Access Granted</p>
+            <h2>Monroe Corporation Administration</h2>
+            <p class="admin-muted" id="admin-session-summary">Verified administrative session.</p>
+          </div>
+          <button class="button secondary" id="admin-logout" type="button">Sign Out</button>
+        </div>
+
+        <div class="admin-warning">
+          <strong>Security note:</strong> This GitHub Pages version protects the interface, not server-side data. Do not place private records directly in public files. Use Firebase rules, Firebase Auth, or a backend Worker for sensitive data.
+        </div>
+
+        <div class="admin-tool-grid">
+          <article class="admin-tool">
+            <h3>Division Directory</h3>
+            <p>Review the public Monroe Corporation division structure.</p>
+            <a class="button secondary" href="divisions.html">Open Divisions</a>
+          </article>
+
+          <article class="admin-tool">
+            <h3>Governance Standards</h3>
+            <p>Review corporate standards, access-control language, and accountability policies.</p>
+            <a class="button secondary" href="governance.html">Open Governance</a>
+          </article>
+
+          <article class="admin-tool">
+            <h3>Future Internal Files</h3>
+            <p>This panel is ready for internal file links, reports, investigations, and staff documents.</p>
+            <button class="button secondary" type="button" disabled>Coming Soon</button>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div><strong>Monroe Corporation</strong><p>Digital operations and corporate systems.</p></div>
+    <p>Copyright <span id="year"></span> Monroe Corporation. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script type="module" src="js/admin-auth.js"></script>
+</body>
+</html>

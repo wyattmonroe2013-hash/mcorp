@@ -1,0 +1,6 @@
+<svg width="320" height="320" viewBox="0 0 320 320" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Monroe Corporation logo">
+  <rect width="320" height="320" rx="42" fill="#102A43"/>
+  <circle cx="160" cy="160" r="106" fill="none" stroke="#B78B2F" stroke-width="10"/>
+  <path d="M82 218V102H110L160 176L210 102H238V218H207V157L169 214H151L113 157V218H82Z" fill="white"/>
+  <path d="M97 242H223" stroke="#B78B2F" stroke-width="10" stroke-linecap="round"/>
+</svg>
