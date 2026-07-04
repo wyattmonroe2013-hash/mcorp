@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Administration | Monroe Corporation</title>
+  <meta name="description" content="Administrative account system for Monroe Corporation. Registration requires verification with an Emerald Games admin account." />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html"><img src="assets/logo.svg" alt="Monroe Corporation logo" /><span>Monroe Corporation</span></a>
+    <button class="nav-toggle" aria-label="Open navigation" aria-expanded="false">Menu</button>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="about.html">About</a>
+      <a href="divisions.html">Divisions</a>
+      <a href="governance.html">Governance</a>
+      <a href="contact.html">Contact</a>
+      <a href="admin.html" aria-current="page">Administration</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero admin-hero">
+      <p class="eyebrow">Administrative Account System</p>
+      <h1>Restricted Monroe Corporation access.</h1>
+      <p>New administrative accounts must first verify through an Emerald Games account with <strong>role: admin</strong>. After registration, administrators sign in with their separate Monroe Corporation administrative account.</p>
+    </section>
+
+    <section class="section admin-layout">
+      <div class="admin-card admin-wide" id="admin-info-panel">
+        <p class="division-label">Access Process</p>
+        <h2>Register once. Sign in with Monroe credentials afterward.</h2>
+        <div class="admin-steps">
+          <article>
+            <span>01</span>
+            <h3>Verify Emerald Games admin status</h3>
+            <p>The registration form checks the Emerald Games <code>users</code> collection and requires the account to have <code>role: "admin"</code>.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Create the Monroe administrative account</h3>
+            <p>The site stores a new record in the <code>administrativeAccounts</code> collection with its own username and SHA-256 password hash.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Use the administrative account for login</h3>
+            <p>Future access uses the Monroe Corporation administrative account instead of the Emerald Games password.</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="admin-auth-grid" id="admin-auth-panels">
+        <div class="admin-card" id="admin-login-panel">
+          <p class="division-label">Administrative Login</p>
+          <h2>Sign In</h2>
+          <p class="admin-muted">Use the Monroe Corporation administrative account created after Emerald Games admin verification.</p>
+
+          <form class="admin-form" id="admin-login-form">
+            <label for="login-admin-username">Administrative Username</label>
+            <input id="login-admin-username" name="adminUsername" autocomplete="username" required />
+
+            <label for="login-admin-password">Administrative Password</label>
+            <input id="login-admin-password" name="adminPassword" type="password" autocomplete="current-password" required />
+
+            <button class="button primary" type="submit">Sign In</button>
+            <p class="form-status" id="login-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+
+        <div class="admin-card" id="admin-register-panel">
+          <p class="division-label">First-Time Registration</p>
+          <h2>Create Administrative Account</h2>
+          <p class="admin-muted">Registration is only allowed after verifying an Emerald Games account with the admin role.</p>
+
+          <form class="admin-form" id="admin-register-form">
+            <div class="admin-form-section">
+              <h3>Emerald Games Verification</h3>
+              <label for="emerald-username">Emerald Games Username</label>
+              <input id="emerald-username" name="emeraldUsername" autocomplete="username" required />
+
+              <label for="emerald-password">Emerald Games Password</label>
+              <input id="emerald-password" name="emeraldPassword" type="password" autocomplete="current-password" required />
+            </div>
+
+            <div class="admin-form-section">
+              <h3>Monroe Corporation Administrative Account</h3>
+              <label for="register-admin-username">New Administrative Username</label>
+              <input id="register-admin-username" name="adminUsername" autocomplete="username" pattern="[A-Za-z0-9._-]{3,32}" title="Use 3 to 32 letters, numbers, periods, underscores, or hyphens." required />
+
+              <label for="register-display-name">Display Name</label>
+              <input id="register-display-name" name="displayName" autocomplete="name" placeholder="Optional" />
+
+              <label for="register-admin-password">New Administrative Password</label>
+              <input id="register-admin-password" name="adminPassword" type="password" autocomplete="new-password" minlength="8" required />
+
+              <label for="register-admin-confirm">Confirm Administrative Password</label>
+              <input id="register-admin-confirm" name="adminPasswordConfirm" type="password" autocomplete="new-password" minlength="8" required />
+            </div>
+
+            <button class="button primary" type="submit">Create Administrative Account</button>
+            <p class="form-note">Use at least 8 characters. Usernames may contain letters, numbers, periods, underscores, and hyphens.</p>
+            <p class="form-status" id="register-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+
+      <div class="admin-card admin-dashboard" id="admin-dashboard" hidden>
+        <div class="admin-dashboard-header">
+          <div>
+            <p class="division-label">Access Granted</p>
+            <h2>Monroe Corporation Administration</h2>
+            <p class="admin-muted" id="admin-session-summary">Verified administrative session.</p>
+            <div class="admin-session-badges" id="admin-session-badges"></div>
+          </div>
+          <button class="button secondary" id="admin-logout" type="button">Sign Out</button>
+        </div>
+
+        <div class="admin-warning">
+          <strong>Security note:</strong> This GitHub Pages version protects the interface, not server-side data. Do not place private records directly in public files. For confidential administrative functions, use Firebase rules, Firebase Auth, or a backend Worker.
+        </div>
+
+        <div class="admin-tool-grid">
+          <article class="admin-tool">
+            <h3>Division Directory</h3>
+            <p>Review the public Monroe Corporation division structure.</p>
+            <a class="button secondary" href="divisions.html">Open Divisions</a>
+          </article>
+
+          <article class="admin-tool">
+            <h3>Governance Standards</h3>
+            <p>Review corporate standards, access-control language, and accountability policies.</p>
+            <a class="button secondary" href="governance.html">Open Governance</a>
+          </article>
+
+          <article class="admin-tool">
+            <h3>Administrative Files</h3>
+            <p>This panel is ready for internal file links, reports, investigations, and staff documents.</p>
+            <button class="button secondary" type="button" disabled>Coming Soon</button>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div><strong>Monroe Corporation</strong><p>Digital operations and corporate systems.</p></div>
+    <p>Copyright <span id="year"></span> Monroe Corporation. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script type="module" src="js/admin-auth.js"></script>
+</body>
+</html>
