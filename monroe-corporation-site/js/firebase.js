@@ -25,7 +25,7 @@ import {
 
 import { firebaseConfig } from "./firebase-config.js";
 
-/* ================= INIT ================= */
+/* ================= INIT ================ */
 
 export const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
